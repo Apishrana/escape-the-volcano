@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
-
     }
     void FixedUpdate()
     {
