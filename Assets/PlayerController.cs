@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
+    private float NormalSpeed;
     private float Speed;
     [SerializeField]
     private float SprintSpeed;
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask GroundMask;
     private bool CanDoubleJump = false;
-    private bool wasGrounded = false;
+    private bool WasGrounded = false;
+    private bool IsSprinting = false;
     private int RemainingJumps = 1;
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -39,6 +41,9 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Enable();
 
         inputActions.Player.Jump.performed += OnJump;
+        inputActions.Player.Sprint.started += EnterSprint;
+        inputActions.Player.Sprint.canceled += ExitSprint;
+
     }
 
     void OnDisable()
@@ -46,6 +51,17 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Disable();
 
         inputActions.Player.Jump.performed -= OnJump;
+    }
+
+    void EnterSprint(InputAction.CallbackContext callbackContext)
+    {
+        IsSprinting = true;
+        Speed = SprintSpeed;
+    }
+    void ExitSprint(InputAction.CallbackContext callbackContext)
+    {
+        IsSprinting = false;
+        Speed = NormalSpeed;
     }
 
     void OnJump(InputAction.CallbackContext callbackContext)
@@ -60,11 +76,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        Speed = NormalSpeed;
     }
 
     void Update()
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
+
     }
     void FixedUpdate()
     {
@@ -87,11 +105,11 @@ public class PlayerController : MonoBehaviour
         0f,
         GroundMask
     );
-        if (grounded && !wasGrounded)
+        if (grounded && !WasGrounded)
         {
             RemainingJumps = CanDoubleJump ? 2 : 1;
         }
-        wasGrounded = grounded;
+        WasGrounded = grounded;
     }
 
     public void GiveDoubleJump()
