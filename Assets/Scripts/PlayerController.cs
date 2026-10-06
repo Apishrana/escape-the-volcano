@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField]
     private float NormalSpeed;
     private float Speed;
@@ -80,8 +79,16 @@ public class PlayerController : MonoBehaviour
     {
         if (RemainingJumps > 0)
         {
-            rb.linearVelocityY = JumpVelocity;
-            RemainingJumps--;
+            if (Stamina > 25)
+            {
+                Stamina -= 25;
+                rb.linearVelocityY = JumpVelocity;
+                RemainingJumps--;
+            }
+            else
+            {
+                // flash the slider
+            }
         }
     }
 
@@ -146,7 +153,6 @@ public class PlayerController : MonoBehaviour
         if (Stamina < StaminaMax)
         {
             Stamina += Time.deltaTime * PassiveStaminaGainRate;
-
         }
         else
         {
