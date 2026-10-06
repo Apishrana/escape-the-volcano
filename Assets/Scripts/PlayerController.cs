@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool CanDoubleJump = false;
     private bool WasGrounded = false;
     private bool IsSprinting = false;
+    private bool IsFlashingStamina = false;
     private int RemainingJumps = 1;
     private Rigidbody2D rb;
     private float horizontalInput;
@@ -94,23 +95,18 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator FlashStaminaBar()
     {
+        IsFlashingStamina = true;
         Image fill = StaminaBar.fillRect.GetComponent<Image>();
         Image background = StaminaBar.transform.Find("Background").GetComponent<Image>();
-
         Color originalFillColor = fill.color;
-
         Color originalBackgroundColor = background.color;
-
         fill.color = Color.red;
-
         background.color = Color.white;
-
         yield return new WaitForSeconds(0.15f);
-
         fill.color = originalFillColor;
-
         background.color = originalBackgroundColor;
-
+        yield return new WaitForSeconds(0.15f);
+        IsFlashingStamina = false;
     }
 
     void Start()
@@ -199,9 +195,9 @@ public class PlayerController : MonoBehaviour
         if (IsSprinting)
         {
             Speed = Stamina > 0 ? SprintSpeed : NormalSpeed;
-            if (Stamina == 0)
+            if (Stamina < 5 && !IsFlashingStamina)
             {
-                StartCoroutine(FlashStaminaBar());  // TODO: FIX
+                StartCoroutine(FlashStaminaBar());
             }
         }
     }
