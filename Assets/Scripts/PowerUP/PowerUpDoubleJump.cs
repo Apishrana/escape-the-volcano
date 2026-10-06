@@ -9,6 +9,7 @@ public class PowerUpDoubleJump : MonoBehaviour
             // Debug.Log('s');
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.GiveDoubleJump();
+            Destroy(gameObject);
         }
 
     }

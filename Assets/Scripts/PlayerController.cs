@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
     public void GiveDoubleJump()
     {
         CanDoubleJump = true;
+        RemainingJumps = 1;
     }
 
     void StaminaControl()
