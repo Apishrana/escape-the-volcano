@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Disable();
 
         inputActions.Player.Jump.performed -= OnJump;
+        inputActions.Player.Sprint.started -= EnterSprint;
+        inputActions.Player.Sprint.canceled -= ExitSprint;
     }
 
     void EnterSprint(InputAction.CallbackContext callbackContext)
