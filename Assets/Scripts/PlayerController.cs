@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
             Speed = Stamina > 0 ? SprintSpeed : NormalSpeed;
             if (Stamina == 0)
             {
-                StartCoroutine(FlashStaminaBar());
+                StartCoroutine(FlashStaminaBar());  // TODO: FIX
             }
         }
     }
