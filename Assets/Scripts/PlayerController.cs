@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
     private float GroundCheckHeight;
     [SerializeField]
     private LayerMask GroundMask;
+    [SerializeField]
+    private int Stamina;
+    [SerializeField]
+    private int StaminaMax;
+    [SerializeField]
+    private Slider StaminaBar;
     private bool CanDoubleJump = false;
     private bool WasGrounded = false;
     private bool IsSprinting = false;
@@ -77,11 +84,14 @@ public class PlayerController : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         Speed = NormalSpeed;
+        StaminaBar.interactable = false;
     }
 
     void Update()
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
+        StaminaBar.value = Stamina;
+        StaminaBar.maxValue = StaminaMax;
     }
     void FixedUpdate()
     {
