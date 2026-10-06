@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float StaminaMax;
     [SerializeField]
+    private float PassiveStaminaGainRate;
+    [SerializeField]
     private Slider StaminaBar;
     private bool CanDoubleJump = false;
     private bool WasGrounded = false;
@@ -132,9 +134,24 @@ public class PlayerController : MonoBehaviour
 
     void StaminaControl()
     {
-        if (IsSprinting)
+        if (IsSprinting && horizontalInput != 0)
         {
             Stamina -= Time.deltaTime * SprintStaminaDrainRate;
+        }
+        if (Stamina < 0)
+        {
+            Stamina = 0f;
+            ExitSprint(new InputAction.CallbackContext());
+        }
+
+        if (Stamina < StaminaMax)
+        {
+            Stamina += Time.deltaTime * PassiveStaminaGainRate;
+
+        }
+        else
+        {
+            Stamina = StaminaMax;
         }
 
         StaminaBar.value = Stamina;

@@ -214,6 +214,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""883c74b8-3d41-4860-a20f-6f1c6ba93188"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5813dda9-687f-48f3-b505-32e4b7d3575f"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
