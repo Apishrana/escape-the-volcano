@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
     void ExitSprint(InputAction.CallbackContext callbackContext)
     {
         IsSprinting = false;
+        Speed = NormalSpeed;
     }
 
     void OnJump(InputAction.CallbackContext callbackContext)
@@ -95,8 +96,6 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
         StaminaControl();
-
-        Debug.Log(Speed);
     }
 
     void FixedUpdate()
