@@ -69,12 +69,10 @@ public class PlayerController : MonoBehaviour
     void EnterSprint(InputAction.CallbackContext callbackContext)
     {
         IsSprinting = true;
-        Speed = SprintSpeed;
     }
     void ExitSprint(InputAction.CallbackContext callbackContext)
     {
         IsSprinting = false;
-        Speed = NormalSpeed;
     }
 
     void OnJump(InputAction.CallbackContext callbackContext)
@@ -97,6 +95,8 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
         StaminaControl();
+
+        Debug.Log(Speed);
     }
 
     void FixedUpdate()
@@ -141,8 +141,8 @@ public class PlayerController : MonoBehaviour
         if (Stamina < 0)
         {
             Stamina = 0f;
-            ExitSprint(new InputAction.CallbackContext());
         }
+        SprintStaminaCheck();
 
         if (Stamina < StaminaMax)
         {
@@ -156,6 +156,14 @@ public class PlayerController : MonoBehaviour
 
         StaminaBar.value = Stamina;
         StaminaBar.maxValue = StaminaMax;
+    }
+
+    void SprintStaminaCheck()
+    {
+        if (IsSprinting)
+        {
+            Speed = Stamina > 0 ? SprintSpeed : NormalSpeed;
+        }
     }
 
     void OnDrawGizmos()
