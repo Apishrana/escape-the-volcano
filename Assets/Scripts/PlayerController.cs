@@ -160,6 +160,11 @@ public class PlayerController : MonoBehaviour
         RemainingJumps = 1;
     }
 
+    public void FillStamina()
+    {
+        Stamina = StaminaMax;   
+    }
+
     void StaminaControl()
     {
         if (IsSprinting && horizontalInput != 0)
