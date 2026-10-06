@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -87,9 +88,29 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // flash the slider
+                StartCoroutine(FlashStaminaBar());
             }
         }
+    }
+    IEnumerator FlashStaminaBar()
+    {
+        Image fill = StaminaBar.fillRect.GetComponent<Image>();
+        Image background = StaminaBar.transform.Find("Background").GetComponent<Image>();
+
+        Color originalFillColor = fill.color;
+
+        Color originalBackgroundColor = background.color;
+
+        fill.color = Color.red;
+
+        background.color = Color.white;
+
+        yield return new WaitForSeconds(0.15f);
+
+        fill.color = originalFillColor;
+
+        background.color = originalBackgroundColor;
+
     }
 
     void Start()
@@ -168,6 +189,10 @@ public class PlayerController : MonoBehaviour
         if (IsSprinting)
         {
             Speed = Stamina > 0 ? SprintSpeed : NormalSpeed;
+            if (Stamina == 0)
+            {
+                StartCoroutine(FlashStaminaBar());
+            }
         }
     }
 
