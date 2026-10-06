@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 50, y: -15}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &219489446
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
-  m_Value: 47
+  m_WholeNumbers: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   NormalSpeed: 8
   SprintSpeed: 10
+  SprintStaminaDrainRate: 5
   Accelerate: 40
   Decelerate: 60
   JumpVelocity: 20
@@ -1074,7 +1075,7 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 8
-  Stamina: 50
+  Stamina: 100
   StaminaMax: 100
   StaminaBar: {fileID: 219489446}
 --- !u!1 &1167409385

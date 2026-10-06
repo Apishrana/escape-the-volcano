@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float SprintSpeed;
     [SerializeField]
+    private float SprintStaminaDrainRate;
+    [SerializeField]
     private float Accelerate;
     [SerializeField]
     private float Decelerate;
@@ -26,9 +28,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask GroundMask;
     [SerializeField]
-    private int Stamina;
+    private float Stamina;
     [SerializeField]
-    private int StaminaMax;
+    private float StaminaMax;
     [SerializeField]
     private Slider StaminaBar;
     private bool CanDoubleJump = false;
@@ -92,9 +94,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
-        StaminaBar.value = Stamina;
-        StaminaBar.maxValue = StaminaMax;
+        StaminaControl();
     }
+
     void FixedUpdate()
     {
         movePlayer();
@@ -127,6 +129,18 @@ public class PlayerController : MonoBehaviour
     {
         CanDoubleJump = true;
     }
+
+    void StaminaControl()
+    {
+        if (IsSprinting)
+        {
+            Stamina -= Time.deltaTime * SprintStaminaDrainRate;
+        }
+
+        StaminaBar.value = Stamina;
+        StaminaBar.maxValue = StaminaMax;
+    }
+
     void OnDrawGizmos()
     {
         if (RemainingJumps == 0)
@@ -135,4 +149,5 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireCube(GroundCheck.position, new Vector3(GroundCheckWidth, GroundCheckHeight));
         }
     }
+
 }
