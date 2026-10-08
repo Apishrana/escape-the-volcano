@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private bool IsFlashingStamina = false;
     private int RemainingJumps = 1;
     private Rigidbody2D rb;
+    private PlayerAnimation anim;
     private float horizontalInput;
     private InputSystem_Actions inputActions;
 
@@ -86,6 +87,10 @@ public class PlayerController : MonoBehaviour
                 Stamina -= 25;
                 rb.linearVelocityY = JumpVelocity;
                 RemainingJumps--;
+                if (WasGrounded)
+                {
+                    anim.Jump();
+                }
             }
             else
             {
@@ -114,12 +119,15 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         Speed = NormalSpeed;
         StaminaBar.interactable = false;
+        anim = gameObject.GetComponent<PlayerAnimation>();
     }
 
     void Update()
     {
         horizontalInput = inputActions.Player.Move.ReadValue<float>();
         StaminaControl();
+        anim.Walk(Mathf.Abs(horizontalInput) > 0.2f);
+        anim.Falling(Mathf.Abs(rb.linearVelocityY) > 0.1f);
     }
 
     void FixedUpdate()
@@ -210,5 +218,8 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireCube(GroundCheck.position, new Vector3(GroundCheckWidth, GroundCheckHeight));
         }
     }
-
 }
+
+// TODO  Aseprite 
+// power ups
+// tiling issues
