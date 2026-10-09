@@ -10,7 +10,7 @@ public class PowerUpIncreaseStamina : MonoBehaviour
         {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.IncreaseStamina(IncreasePercent);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
     }

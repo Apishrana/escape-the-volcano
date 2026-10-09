@@ -8,7 +8,7 @@ public class PowerUpFullStamina : MonoBehaviour
         {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.FillStamina();
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
 
     }
