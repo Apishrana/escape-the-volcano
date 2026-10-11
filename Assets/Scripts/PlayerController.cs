@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private float PassiveStaminaGainRate;
     [SerializeField]
     private Slider StaminaBar;
+    [SerializeField]
+    private TextMeshProUGUI StaminaText;
     private bool CanDoubleJump = false;
     private bool WasGrounded = false;
     private bool IsSprinting = false;
@@ -196,6 +199,8 @@ public class PlayerController : MonoBehaviour
 
         StaminaBar.value = Stamina;
         StaminaBar.maxValue = StaminaMax;
+        int Percent = (int)MathF.Round(Stamina / StaminaMax * 100);
+        StaminaText.text = Percent.ToString() + '%';
     }
 
     void SprintStaminaCheck()
