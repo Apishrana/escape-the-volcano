@@ -224,7 +224,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
-// TODO  Aseprite 
-// power ups
-// tiling issues
