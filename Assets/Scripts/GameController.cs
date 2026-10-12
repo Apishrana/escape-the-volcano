@@ -50,6 +50,5 @@ public class GameController : MonoBehaviour
         LavaTimePercent = 100f;
         LavaHeight++;
         LavaObject.position = new Vector3(0, LavaHeight - 4.5f);
-
     }
 }

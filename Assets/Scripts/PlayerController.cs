@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -200,7 +201,7 @@ public class PlayerController : MonoBehaviour
         StaminaBar.value = Stamina;
         StaminaBar.maxValue = StaminaMax;
         int Percent = (int)MathF.Round(Stamina / StaminaMax * 100);
-        StaminaText.text = Percent.ToString() + '%';
+        StaminaText.text = Percent.ToString() + "%";
     }
 
     void SprintStaminaCheck()
@@ -221,6 +222,14 @@ public class PlayerController : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(GroundCheck.position, new Vector3(GroundCheckWidth, GroundCheckHeight));
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Lava"))
+        {
+            Debug.Log("1234");
+            anim.Death();
         }
     }
 }
