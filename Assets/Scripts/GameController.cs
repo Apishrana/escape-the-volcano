@@ -18,6 +18,20 @@ public class GameController : MonoBehaviour
     private float LavaRiseTime;
     [SerializeField]
     private Transform LavaObject;
+    [SerializeField]
+    private TextMeshProUGUI GameOverLavaHeight;
+    [SerializeField]
+    private TextMeshProUGUI GameOverPlayerHeight;
+    [SerializeField]
+    private TextMeshProUGUI GameOverPlayTime;
+    [SerializeField]
+    private TextMeshProUGUI GameOverMaxLavaHeight;
+    [SerializeField]
+    private TextMeshProUGUI GameOverMaxPlayerHeight;
+    [SerializeField]
+    private TextMeshProUGUI GameOverMaxPlayTime;
+    [SerializeField]
+    private GameObject GameOverRect;
     private float LavaTime;
     private float LavaTimePercent = 100f;
     private float PlayTime = 0;
@@ -46,7 +60,7 @@ public class GameController : MonoBehaviour
     {
         LavaTime -= Time.fixedDeltaTime;
         LavaTimePercent = LavaTime / LavaRiseTime * 100;
-        PlayTime += Time.fixedDeltaTime / 10;
+        PlayTime += Time.fixedDeltaTime;
     }
     void RaseLava()
     {
@@ -60,16 +74,25 @@ public class GameController : MonoBehaviour
         float BestPlayTime = Mathf.Max(PlayerPrefs.GetFloat("BestPlayTime"), PlayTime);
         float BestMaxPlayerHeight = Mathf.Max(PlayerPrefs.GetFloat("BestMaxPlayerHeight"), MaxPlayerHeight);
         float BestLavaHeight = Mathf.Max(PlayerPrefs.GetFloat("BestLavaHeight"), LavaHeight);
-        print(PlayTime);
-        print(BestPlayTime);
-        print(MaxPlayerHeight);
-        print(BestMaxPlayerHeight);
-        print(LavaHeight);
-        print(BestLavaHeight);
+        GameOverPlayTime.text = (Mathf.Round(PlayTime * 10) / 10).ToString() + " s";
+        GameOverMaxPlayTime.text = (Mathf.Round(BestPlayTime * 10) / 10).ToString() + " s";
+        GameOverPlayerHeight.text = (Mathf.Round(MaxPlayerHeight * 10) / 10).ToString() + " m";
+        GameOverMaxPlayerHeight.text = (Mathf.Round(BestMaxPlayerHeight * 10) / 10).ToString() + " m";
+        GameOverLavaHeight.text = (Mathf.Round(LavaHeight * 10) / 10).ToString() + " m";
+        GameOverMaxLavaHeight.text = (Mathf.Round(BestLavaHeight * 10) / 10).ToString() + " m";
         PlayerPrefs.SetFloat("BestPlayTime", BestPlayTime);
         PlayerPrefs.SetFloat("BestMaxPlayerHeight", BestMaxPlayerHeight);
         PlayerPrefs.SetFloat("BestLavaHeight", BestLavaHeight);
         Destroy(Camera.main.GetComponent<CamComtroller>());
+        GameOverRect.SetActive(true);
         Destroy(this);
+    }
+    public void Retry()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameLevel");
+    }
+    public void Exit()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
