@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -228,8 +227,14 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Lava"))
         {
-            Debug.Log("1234");
             anim.Death();
+            rb.bodyType = RigidbodyType2D.Static;
+            StartCoroutine(DeathCountdown());
         }
+    }
+    IEnumerator DeathCountdown()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }

@@ -339,7 +339,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 70
   m_TargetDisplay: 0
 --- !u!224 &405913738
 RectTransform:
@@ -1682,7 +1682,7 @@ GameObject:
   - component: {fileID: 988401026}
   m_Layer: 0
   m_Name: Lava
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2000,8 +2000,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280358182
-  m_fontColor: {r: 0.1509434, g: 0.08330367, b: 0.12995175, a: 1}
+    rgba: 4294949165
+  m_fontColor: {r: 0.1745283, g: 0.7236293, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2212,7 +2212,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6303161600414507742, guid: 50ab5af27ffb546d2a5aeca2cc66085a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
