@@ -26,7 +26,7 @@ public class CamComtroller : MonoBehaviour
     void Update()
     {
         float x = Mathf.Clamp(player.position.x, minX, maxX);
-        float y = Mathf.Clamp(player.position.y, -10, 1000);
+        float y = Mathf.Clamp(player.position.y, minY, 1000);
         transform.position = new Vector3(x, y, -10);
         float cameraDeltaX = transform.position.x - cameraStartPosition.x;
         BG.position = new Vector3(

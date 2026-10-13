@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private Slider StaminaBar;
     [SerializeField]
     private TextMeshProUGUI StaminaText;
+    [SerializeField]
+    private GameController gc;
     private bool CanDoubleJump = false;
     private bool WasGrounded = false;
     private bool IsSprinting = false;
@@ -232,8 +234,18 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DeathCountdown());
         }
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Spikes"))
+        {
+            anim.Death();
+            rb.bodyType = RigidbodyType2D.Static;
+            StartCoroutine(DeathCountdown());
+        }
+    }
     IEnumerator DeathCountdown()
     {
+        gc.GameOver();
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
