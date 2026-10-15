@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lava
   - Spikes
+  - Ground Check
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Breakable
   - 
   - 
   - 

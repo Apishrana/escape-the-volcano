@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
     {
         LavaTime = LavaRiseTime;
         LavaBar.interactable = false;
-        LavaObject.position = new Vector3(0, LavaHeight - 4.5f);
+        LavaObject.position = new Vector3(0, LavaHeight - 8.0f);
 
     }
 
@@ -52,9 +52,11 @@ public class GameController : MonoBehaviour
         {
             RaseLava();
         }
-        PlayerHeightText.text = ((int)Mathf.Round(Player.transform.position.y)).ToString() + " m";
+        if (Player)
+            PlayerHeightText.text = ((int)Mathf.Round(Player.transform.position.y)).ToString() + " m";
         LavaHeightText.text = LavaHeight.ToString() + " m";
-        MaxPlayerHeight = Mathf.Max(MaxPlayerHeight, Player.transform.position.y);
+        if (Player)
+            MaxPlayerHeight = Mathf.Max(MaxPlayerHeight, Player.transform.position.y);
     }
     void FixedUpdate()
     {
@@ -67,7 +69,7 @@ public class GameController : MonoBehaviour
         LavaTime = LavaRiseTime;
         LavaTimePercent = 100f;
         LavaHeight++;
-        LavaObject.position = new Vector3(0, LavaHeight - 4.5f);
+        LavaObject.position = new Vector3(0, LavaHeight - 8.0f);
     }
     public void GameOver()
     {
@@ -85,7 +87,6 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetFloat("BestLavaHeight", BestLavaHeight);
         Destroy(Camera.main.GetComponent<CamComtroller>());
         GameOverRect.SetActive(true);
-        Destroy(this);
     }
     public void Retry()
     {

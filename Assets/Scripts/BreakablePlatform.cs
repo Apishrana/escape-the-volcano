@@ -1,13 +1,12 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BreakablePlatform : MonoBehaviour
 {
     [SerializeField] private float LifeTime;
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag.Contains("Player"))
+        if (other.gameObject.tag.Contains("Ground Check"))
         {
             StartCoroutine(StartDecay());
         }

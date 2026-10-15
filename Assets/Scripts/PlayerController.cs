@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float JumpVelocity;
     [SerializeField]
+    private float JumpStaminaDrain;
+    [SerializeField]
     private Transform GroundCheck;
     [SerializeField]
     private float GroundCheckWidth;
@@ -87,9 +89,9 @@ public class PlayerController : MonoBehaviour
     {
         if (RemainingJumps > 0)
         {
-            if (Stamina > 25)
+            if (Stamina > JumpStaminaDrain)
             {
-                Stamina -= 25;
+                Stamina -= JumpStaminaDrain;
                 rb.linearVelocityY = JumpVelocity;
                 RemainingJumps--;
                 if (WasGrounded)
@@ -219,6 +221,8 @@ public class PlayerController : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(GroundCheck.position, new Vector3(GroundCheckWidth, GroundCheckHeight));
         if (RemainingJumps == 0)
         {
             Gizmos.color = Color.red;

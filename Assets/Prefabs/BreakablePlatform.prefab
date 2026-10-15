@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baad885b0690042bb80cebff56a82c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakablePlatform
-  LifeTime: 2
+  LifeTime: 3
 --- !u!50 &3398503914921214930
 Rigidbody2D:
   serializedVersion: 5
