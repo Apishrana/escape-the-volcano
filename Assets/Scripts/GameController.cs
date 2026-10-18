@@ -87,6 +87,7 @@ public class GameController : MonoBehaviour
         PlayerPrefs.SetFloat("BestLavaHeight", BestLavaHeight);
         Destroy(Camera.main.GetComponent<CamComtroller>());
         GameOverRect.SetActive(true);
+        LavaRiseTime = Mathf.Infinity;
     }
     public void Retry()
     {

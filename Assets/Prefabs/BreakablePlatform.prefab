@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakablePlatform
   LifeTime: 3
+  self: {fileID: 6751320440025883299}
 --- !u!50 &3398503914921214930
 Rigidbody2D:
   serializedVersion: 5
