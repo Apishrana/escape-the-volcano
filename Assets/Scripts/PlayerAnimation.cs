@@ -23,5 +23,4 @@ public class PlayerAnimation : MonoBehaviour
     {
         anim.SetBool("Falling", status);
     }
-
 }

@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
     private TextMeshProUGUI GameOverMaxPlayTime;
     [SerializeField]
     private GameObject GameOverRect;
+    [SerializeField]
+    private GameObject GameWonRect;
     private float LavaTime;
     private float LavaTimePercent = 100f;
     private float PlayTime = 0;
@@ -88,6 +90,13 @@ public class GameController : MonoBehaviour
         Destroy(Camera.main.GetComponent<CamComtroller>());
         GameOverRect.SetActive(true);
         LavaRiseTime = Mathf.Infinity;
+    }
+    public void GameWon()
+    {
+        LavaRiseTime = Mathf.Infinity;
+        Destroy(Camera.main.GetComponent<CamComtroller>());
+        GameWonRect.SetActive(true);
+
     }
     public void Retry()
     {

@@ -7,6 +7,8 @@ public class CamComtroller : MonoBehaviour
     [SerializeField]
     private float minY;
     [SerializeField]
+    private float maxY;
+    [SerializeField]
     private float minX;
     [SerializeField]
     private float maxX;
@@ -26,7 +28,7 @@ public class CamComtroller : MonoBehaviour
     void Update()
     {
         float x = Mathf.Clamp(player.position.x, minX, maxX);
-        float y = Mathf.Clamp(player.position.y, minY, 1000);
+        float y = Mathf.Clamp(player.position.y, minY, maxY);
         transform.position = new Vector3(x, y, -10);
         float cameraDeltaX = transform.position.x - cameraStartPosition.x;
         BG.position = new Vector3(

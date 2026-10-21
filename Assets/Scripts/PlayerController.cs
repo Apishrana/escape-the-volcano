@@ -237,6 +237,14 @@ public class PlayerController : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Static;
             StartCoroutine(DeathCountdown());
         }
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            gc.GameWon();
+            anim.Falling(false);
+            anim.Walk(false);
+            Destroy(this);
+        }
     }
     private void OnCollisionEnter2D(Collision2D other)
     {
