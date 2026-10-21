@@ -1,4 +1,5 @@
 using UnityEngine;
+using EasyUI.Toast;
 
 public class PowerUpDoubleJump : MonoBehaviour
 {
@@ -8,8 +9,15 @@ public class PowerUpDoubleJump : MonoBehaviour
         {
             PlayerController pc = collision.gameObject.GetComponent<PlayerController>();
             pc.GiveDoubleJump();
+            Toast.Show("Got double jump", 2f, HexColor("#000000a0"));
             Destroy(transform.parent.gameObject);
         }
 
+    }
+    Color HexColor(string hex)
+    {
+        Color color;
+        ColorUtility.TryParseHtmlString(hex, out color);
+        return color;
     }
 }

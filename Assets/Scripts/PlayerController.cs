@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
     public void IncreaseStamina(int IncreasePercent)
     {
         StaminaMax = (100 + IncreasePercent) * StaminaMax / 100;
+        PassiveStaminaGainRate = (100 + IncreasePercent) * PassiveStaminaGainRate / 100;
     }
 
     void StaminaControl()
